@@ -1,2 +1,35 @@
 # Feira Virtual de Pequenos Produtores
-Aplicação Front-end desenvolvida para conectar diretamente pequenos agricultores familiares e produtores artesanais aos consumidores finais. O projeto visa solucionar a ineficiência logística e a dependência de intermediários que reduzem a margem de lucro do pequeno produtor. Diferente de marketplaces genéricos (como iFood) ou vendas informais (WhatsApp), a plataforma oferece um ecossistema especializado com gestão de sazonalidade, aviso de colheita e perfis enriquecidos que valorizam a história do produtor. O objetivo é fortalecer a economia local, promover a agricultura familiar e facilitar o acesso a alimentos frescos e naturais.
+# 🚜 Feira Virtual de Pequenos Produtores
+
+![Status do Projeto](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow) ![Tecnologias](https://img.shields.io/badge/Tech-HTML%20%7C%20CSS%20%7C%20JS-blue)
+
+> **Acesse o projeto online:** [Link para o Vercel/Netlify aqui]
+
+## 📖 Sobre o Projeto
+A agricultura familiar gera a maioria dos empregos no campo no Brasil, mas enfrenta barreiras tecnológicas e de acesso ao mercado. A **Feira Virtual** é uma solução Front-end projetada para:
+- Eliminar intermediários na cadeia de alimentos.
+- Oferecer gestão profissional para pequenos produtores (aviso de colheita, gestão de estoque).
+- Conectar consumidores a alimentos frescos e locais.
+
+Este projeto faz parte do meu Trabalho de Conclusão de Curso (Monografia), focado em aplicar Engenharia de Software para impacto social.
+
+## 📱 Funcionalidades (Interface)
+- **Vitrine Virtual:** Catálogo de produtos com fotos e descrições detalhadas.
+- **Perfil do Produtor:** Página dedicada para storytelling e conexão com o cliente.
+- **Carrinho de Compras:** Simulação de fluxo de compra direta.
+- **Responsividade:** Layout adaptado para uso em dispositivos móveis (foco no produtor em campo).
+
+## 🛠 Tecnologias Utilizadas
+- HTML5 (Semântico)
+- CSS3 (Flexbox/Grid, Responsividade)
+- JavaScript (Manipulação de DOM e lógica de carrinho)
+- Git/GitHub
+
+## 📸 Screenshots
+*(Coloque aqui 2 ou 3 prints das telas mais bonitas do seu projeto)*
+![Tela Inicial](./assets/home-print.png)
+
+## 🚀 Como rodar o projeto localmente
+1. Clone o repositório:
+   ```bash
+   git clone [https://github.com/SEU-USUARIO/feira-virtual.git](https://github.com/SEU-USUARIO/feira-virtual.git)
