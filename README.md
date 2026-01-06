@@ -1,2 +1,2 @@
-# Feira Virtual de Pequenos Produtores Site
-Projeto Front-End do Site Feira Virtual
+# Feira Virtual de Pequenos Produtores
+Aplicação Front-end desenvolvida para conectar diretamente pequenos agricultores familiares e produtores artesanais aos consumidores finais. O projeto visa solucionar a ineficiência logística e a dependência de intermediários que reduzem a margem de lucro do pequeno produtor. Diferente de marketplaces genéricos (como iFood) ou vendas informais (WhatsApp), a plataforma oferece um ecossistema especializado com gestão de sazonalidade, aviso de colheita e perfis enriquecidos que valorizam a história do produtor. O objetivo é fortalecer a economia local, promover a agricultura familiar e facilitar o acesso a alimentos frescos e naturais.
