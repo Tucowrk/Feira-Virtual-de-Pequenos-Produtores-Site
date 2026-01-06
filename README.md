@@ -1,4 +1,3 @@
-# Feira Virtual de Pequenos Produtores
 # 🚜 Feira Virtual de Pequenos Produtores
 
 ![Status do Projeto](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow) ![Tecnologias](https://img.shields.io/badge/Tech-HTML%20%7C%20CSS%20%7C%20JS-blue)
