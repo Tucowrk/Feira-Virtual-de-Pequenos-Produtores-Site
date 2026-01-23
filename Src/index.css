@@ -1,0 +1,205 @@
+/* Seção de Cadastro */
+.cadastro {
+    background-color: #DADAC6;
+    /* Bege claro do 'hero' e seções de formulário */
+    padding: 56px;
+    text-align: center;
+}
+
+.cadastro h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.cadastro p {
+    color: #555;
+    margin: 10px 0 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input {
+    width: 300px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #c7b9a7;
+    border-radius: 6px;
+    outline: none;
+}
+
+.checkbox {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.checkbox label {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #444;
+    cursor: pointer;
+    line-height: 1.2;
+}
+
+.checkbox input[type="checkbox"] {
+    margin: 0 6px 0 0;
+    /* ← controla a distância entre caixa e texto */
+    width: 16px;
+    height: 16px;
+    accent-color: #a36b3e;
+    /* cor da caixinha no estilo do site */
+}
+
+
+
+button {
+    background-color: #a36b3e;
+    color: #fff;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #8a5733;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    form input {
+        width: 80%;
+    }
+}
+
+.Banner img {
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: 64% 33%;
+}
+
+.gilda-display-regular {
+    font-family: "Gilda Display", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.Banner h3 {
+    font-family: "Gilda Display", serif;
+    font-weight: 400;
+    font-style: regular;
+    position: absolute;
+    font-size: 48px;
+    top: 30%;
+    left: 12%;
+}
+
+.textProfiles {
+    width: 650px;
+    max-height: 55px;
+}
+
+.textProfiles p {
+    font-family: "Gilda Display", serif;
+    font-weight: 400;
+    font-size: 30px;
+    position: relative;
+    left: 30%;
+    margin-top: 31px;
+    margin-left: -120px;
+}
+
+.row {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    border-radius: 80%;
+    margin-top: 136px;
+    width: 100%;
+    gap: 108px;
+
+}
+
+.producer { 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.producer a{
+    font-size: 25px;
+    color: #4a382c;
+    margin-top: 10px;
+    padding-top: 5px;
+    text-decoration: none;
+}
+
+.producer p {
+    font-family: montserrat;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+.categories {
+    display: flex;
+    align-items: center; 
+    margin-top: 50px;
+    gap: 200px;
+    justify-content: center;
+}
+
+.categories p {
+    font-family: montserrat;
+    text-decoration: none;
+}
+
+.textCategories {
+    font-family: "Gilda Display", serif;
+    font-weight: 400;
+    font-size: 35px;
+    position: relative;
+    left: 10%;
+    margin-top: 104px;
+
+}
+.category {
+    background-color: #fff;
+    padding: 35px;
+    border-radius: 10%;
+}
+
+.textNews {
+     font-family: "Gilda Display", serif;
+    font-weight: 400;
+    font-size: 40px;
+    position: relative;
+    left: 10%;
+    margin-top: 104px;
+}
+.productNews {
+    display: flex;
+    align-items: center; 
+    margin-top: 66px;
+    gap: 125px;
+    justify-content: center;
+}
+
+   
