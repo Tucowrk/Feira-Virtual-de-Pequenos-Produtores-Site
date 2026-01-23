@@ -19,8 +19,8 @@
 .hero-banner .banner-content {
     position: absolute; /* Solta o elemento para flutuar sobre a imagem */
     top: 50%;  /* Empurra para o meio vertical */
-    left: 50%; /* Empurra para o meio horizontal */
-    transform: translate(-50%, -50%); /* Centraliza exatemente no meio */
+    left: 20%; /* Empurra para o meio horizontal */
+    transform: translateY(-50%); /* Centraliza exatemente no meio */
     
     background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com leve transparência */
     padding: 40px 60px; /* Espaçamento interno */
@@ -28,7 +28,7 @@
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Sombra suave para destacar */
     width: 90%; /* Em celulares, ocupa 90% da tela */
-    max-width: 600px; /* Em PCs, não passa de 600px */
+    max-width: 500px; /* Em PCs, não passa de 600px */
 }
 
 /* O Texto dentro da caixa */

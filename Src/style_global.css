@@ -57,8 +57,8 @@ img {
 header {
     background-color: var(--primary-color);
     color: var(--bg-white);
-    padding: 15px 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 header .header-content {
@@ -70,45 +70,47 @@ header .header-content {
 header .logo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 header .logo img {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 3px solid rgba(255,255,255,0.4);
 }
 
 header .logo-text h1 {
     font-family: var(--font-title);
-    font-size: 2.2rem;
+    font-size: 3.2rem;
     line-height: 1;
     font-weight: 400;
+    margin-bottom: 1px; /* Espaço para o subtítulo */
 }
 
 header .logo-text p {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     font-weight: 300;
     opacity: 0.9;
+    letter-spacing: 1px; /* Espaçamento entre letras para ficar elegante */
 }
 
 header .icons {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     align-items: center;
 }
 
 header .icon-link svg {
-    width: 28px;
-    height: 28px;
+    width: 48px;
+    height: 35px;
     fill: white;
     transition: transform 0.2s;
 }
 
 header .icon-link:hover svg {
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 /* =========================================
