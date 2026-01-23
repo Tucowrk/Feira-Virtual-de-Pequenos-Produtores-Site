@@ -1,0 +1,141 @@
+.main {
+  padding: 80px 0;
+  .sectionTitle {
+    font-size: 48px;
+    font-weight: 500;
+    padding-bottom: 30px;
+  }
+  .rowCart {
+    display: flex;
+    gap: 52px;
+    .cart {
+      flex: 1;
+      .cardItems {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        .cardItem {
+          background-color: white;
+          display: flex;
+          justify-content: space-between;
+          gap: 30px;
+          border-radius: 8px;
+          .cardImage {
+            img {
+              width: 120px;
+              /* height: 120px; */
+              height: 100%;
+            }
+          }
+  
+          .cardInfoRow {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            .cardItemInfo {
+              padding-top: 2rem;
+              h3 {
+                font-weight: 500;
+                font-size: 16px;
+                font-family: "Montserrat", sans-serif;
+              }
+              p {
+                font-size: 14px;
+                font-family: "Montserrat", sans-serif;
+              }
+            }
+            .cardItemValue {
+              padding-top: 2rem;
+              padding-right: 2rem;
+              .cardItemActions {
+                display: flex;
+                align-items: flex-end;
+                gap: 40px;
+              }
+              .qty {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                padding-top: .5rem;
+                button {
+                  background-color: transparent;
+                  border: 0;
+                  padding: 0;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  cursor: pointer;
+                }
+              }
+              .trash {
+                padding: 0;
+                background-color: transparent;
+                border: none;
+                margin-bottom: -3px;
+                cursor: pointer;
+              }
+            }
+          }
+  
+        }
+      }
+      .cupom {
+        padding-top: 50px;
+        h3 {
+          font-size: 48px;
+          font-weight: 500;
+          padding-bottom: 30px;
+        }
+        input {
+          border: 1px solid #8E5E3D;
+          border-radius: 8px;
+          padding: 22px 30px;
+          min-width: 400px;
+        }
+      }
+    }
+    .summary {
+      background-color: white;
+      padding: 20px;
+      max-width: 440px;
+      border-radius: 8px;
+      height: min-content;
+      
+      a {
+        text-decoration: none;
+      }
+
+      h3 {
+        font-size: 48px;
+        font-weight: 500;
+        padding-bottom: 22px;
+      }
+      .itemRow {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 46px;
+        span {
+          font-size: 16px;
+          font-family: "Montserrat", sans-serif;
+        }
+      }
+      .total {
+        font-size: 48px;
+        text-align: center;
+        font-weight: 500;
+        padding-bottom: 50px;
+      }
+      .checkout {
+        background-color: #C48F6C;
+        border: none;
+        cursor: pointer;
+        padding: 16px 30px;
+        border-radius: 15px;
+        color: white;
+        margin: 0 auto;
+        display: flex;
+      }
+    }
+  }
+}
+
