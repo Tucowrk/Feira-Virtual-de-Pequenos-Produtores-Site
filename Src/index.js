@@ -1,5 +1,3 @@
-window.location.href = "../Acesse a sua conta/Acesse a sua conta.html";
-
 // Formatação de Moeda Padrão
 const formatarMoeda = (valor) => {
     return new Intl.NumberFormat('pt-BR', {
