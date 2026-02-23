@@ -1,38 +1,21 @@
-// Formatação de Moeda Padrão
-const formatarMoeda = (valor) => {
-    return new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    }).format(valor);
-};
+// index.js
+// Este arquivo está reservado APENAS para lógicas exclusivas da Página Inicial (Home).
+// Exemplo futuro: Lógica de um carrossel de imagens no banner principal.
+// 
+// OBS: Toda a lógica de Carrinho e Formatação de Moeda está no global.js.
 
-// Gerenciamento de Carrinho (Simplificado e Centralizado)
-const Carrinho = {
-    adicionar: (produto) => {
-        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-        carrinho.push(produto);
-        localStorage.setItem('carrinho', JSON.stringify(carrinho));
-        alert(`${produto.name} adicionado ao carrinho!`);
-    },
-    
-    obterTotal: () => {
-        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-        return carrinho.reduce((total, item) => total + Number(item.price), 0);
-    },
-
-    listar: () => {
-        return JSON.parse(localStorage.getItem('carrinho')) || [];
-    }
-};
-
-// Exemplo de uso no clique do botão (genérico)
+// Escutador de cliques global para os botões "Adicionar ao Carrinho"
 document.addEventListener('click', function(e) {
+    // Verifica se o elemento clicado tem a classe 'btn-add-carrinho'
     if (e.target.classList.contains('btn-add-carrinho')) {
-        // Supondo que o botão tenha atributos data-name e data-price
+        
+        // Pega os atributos data-* do HTML do botão
+        const id = e.target.dataset.id; // Adicionado ID para a lógica de quantidade funcionar
         const nome = e.target.dataset.name;
         const preco = e.target.dataset.price;
         const img = e.target.dataset.img;
         
-        Carrinho.adicionar({ name: nome, price: preco, img: img });
+        // Chama a nossa função global
+        adicionarCarrinho({ id: id, name: nome, price: preco, img: img });
     }
 });

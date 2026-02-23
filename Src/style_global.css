@@ -1,6 +1,11 @@
 /* =========================================
    1. Variáveis e Reset (Base)
    ========================================= */
+   
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --primary-color: #a36b3e;    /* Marrom principal */
     --primary-hover: #8a5733;    /* Marrom escuro para hover */
