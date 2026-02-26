@@ -1,88 +1,212 @@
-/* Centraliza o formulário no meio da tela */
-.login-section {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ==========================
+   CABEÇALHO
+========================== */
+header {
+    background-color: #a36b3e;
+    color: #fff;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex: 1; /* Faz o main crescer e empurrar o rodapé para baixo */
+    padding: 15px 60px;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #fff;
+}
+
+header .logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+header h1 {
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: -4px;
+    line-height: 100%;
+    font-family: 'Gilda Display', serif;
+}
+
+header p {
+    font-size: 0.9rem;
+}
+
+header .icons a svg {
+    width: 28px;
+    height: 28px;
+    margin-left: 15px;
+    cursor: pointer;
+    fill: #fff;
+    transition: transform 0.2s ease-in-out;
+}
+
+header .icons a svg:hover {
+    transform: scale(1.2);
+}
+
+/* ==========================
+   SEÇÃO DE LOGIN
+========================== */
+.login-section {
+    background-color: #DADAC6;
     padding: 60px 20px;
-}
-
-.cadastro {
-    max-width: 450px;
-    width: 100%;
-    padding: 40px;
     text-align: center;
+    min-height: 60vh; /* Mantém o rodapé lá embaixo mesmo se a tela for grande */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.cadastro h2 {
-    font-family: var(--font-title);
-    font-size: 2.2rem;
-    color: var(--primary-color);
+.container-login {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.container-login h2 {
+    font-size: 2rem;
+    color: #4a382c;
     margin-bottom: 10px;
 }
 
-.cadastro p {
-    color: var(--text-light);
-    margin-bottom: 30px;
+.container-login p {
+    color: #555;
+    margin-bottom: 25px;
     font-size: 0.95rem;
 }
 
-form {
+#form-login {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
 }
 
-form input {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: var(--border-radius);
-    font-family: var(--font-body);
-    font-size: 1rem;
+#form-login input {
+    width: 100%; /* Pega toda a largura do container pai */
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #c7b9a7;
+    border-radius: 6px;
     outline: none;
-    transition: border-color 0.3s;
 }
 
-form input:focus {
-    border-color: var(--primary-color);
-}
-
-form button {
+#form-login button {
+    margin-top: 10px;
+    background-color: #a36b3e;
+    color: #fff;
+    border: none;
+    padding: 15px 50px;
+    border-radius: 6px;
+    cursor: pointer;
     width: 100%;
-    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.3s ease-in-out, background-color 0.3s;
 }
 
-.links-cadastro {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+#form-login button:hover {
+    background-color: #8a5733;
+    transform: scale(1.02);
 }
 
-.links-cadastro a {
-    color: var(--primary-color);
-    font-weight: 600;
+.link-cadastro {
+    margin-top: 25px !important;
     font-size: 0.9rem;
-    transition: color 0.3s;
 }
 
-.links-cadastro a:hover {
-    color: var(--primary-hover);
+.link-cadastro a {
+    color: #a36b3e;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link-cadastro a:hover {
     text-decoration: underline;
 }
 
+/* ==========================
+   RODAPÉ
+========================== */
+footer {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
 
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+    padding: 0 60px;
+}
 
+.footer-col h3,
+.footer-col h4 {
+    color: #4a382c;
+    margin-bottom: 1rem;
+}
 
+.footer-col.footer-about .logo-footer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
 
+.footer-col.footer-about .logo-footer img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #f0f0f0;
+}
 
+.footer-col ul {
+    list-style: none;
+    padding-left: 0;
+}
 
+.footer-col ul li {
+    margin-bottom: 0.5rem;
+}
 
+.footer-col ul li a {
+    text-decoration: none;
+    color: #333;
+}
 
+.footer-col ul li a:hover {
+    text-decoration: underline;
+}
 
+/* ==========================
+   RESPONSIVIDADE
+========================== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
 
-
-
-
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 0 20px;
+    }
+}
