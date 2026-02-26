@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const nome = document.getElementById("nome").value.trim();
             const email = document.getElementById("email").value.trim();
-            const senha = document.getElementById("senha").value;
-            const confirmar = document.getElementById("confirmar").value;
+            const senha = document.getElementById("password").value;
+            const confirmar = document.getElementById("confirm-password").value;
             const erro = document.getElementById("erro-senha");
 
             // Reseta a mensagem de erro
