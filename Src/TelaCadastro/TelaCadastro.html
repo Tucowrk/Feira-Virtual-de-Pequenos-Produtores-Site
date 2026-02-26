@@ -51,26 +51,22 @@
         <h2>Crie sua Conta</h2>
         <p>Do campo à sua mesa. Cadastre-se e apoie o pequeno produtor.</p>
 
-        <form>
-            <input type="text" id="nome" placeholder="Nome completo">
-            <input type="email" placeholder="E-mail" required>
-            <input id="senha" type="password" placeholder="Senha" required>
-            <input id="confirmar" type="password" placeholder="Confirmação da Senha" required>
+        <form id="form-cadastro">
+            <input type="text" id="nome" placeholder="Nome Completo" required>
+            <input type="email" id="email" placeholder="E-mail" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <input type="password" id="confirm-password" placeholder="Confirmar Senha" required>
 
-<p id="erro-senha" style="color: red; display: none; font-size: 14px; margin-top:-10px;">
-</p>
-
+            <p id="erro-senha" style="color: red; display: none; font-size: 14px; margin-top:-10px;"></p>
 
             <div class="checkbox">
                 <label>
                     <input type="checkbox" required>
-                    Concordo com os <a href="../assets/PDF/TERMOS.pdf">Termos de Uso</a> e <a href="../assets/PDF/PRIVACIDADE.pdf">Política de Privacidade</a>.
+                    Concordo com os <a href="../assets/PDF/TERMOS.pdf">Termos de Uso</a> e <a href="../assets/PDF/PRIVACIDADE.pdf">Política de Privacidade</a>
                 </label>
             </div>
 
-           <button type="button" onclick="cadastrarCliente()">Cadastrar</button>
-            
-        </form>
+            <button type="submit">Cadastrar</button>
     </div>
 </section>
 
