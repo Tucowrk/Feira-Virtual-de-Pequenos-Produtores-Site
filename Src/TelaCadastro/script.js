@@ -35,6 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Cadastro realizado com sucesso!");
 
         // Redirecionamento após cadastro
-        window.location.href = "./Acesse a sua conta/Acesseasuaconta.html";
+        window.location.href = "../Acesse a sua conta/Acesseasuaconta.html";
     });
 });
