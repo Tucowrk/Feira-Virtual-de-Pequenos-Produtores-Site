@@ -6,56 +6,6 @@
 }
 
 /* ==========================
-   CABEÇALHO
-========================== */
-header {
-    background-color: #a36b3e;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 60px;
-}
-
-header .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-header .logo img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-header h1 {
-    font-size: 48px;
-    font-weight: 400;
-    margin-bottom: -4px;
-    line-height: 100%;
-    font-style: normal;
-    font-family: Gilda Display;
-}
-
-header p {
-    font-size: 0.9rem;
-}
-
-header .icons img {
-    width: 28px;
-    height: 28px;
-    margin-left: 15px;
-    cursor: pointer;
-    object-fit: contain;
-    transition: transform 0.2s ease-in-out;
-}
-
-header .icons img:hover {
-    transform: scale(1.2);
-}
-
-/* ==========================
    SEÇÃO DE CADASTRO
 ========================== */
 .cadastro {
@@ -125,64 +75,6 @@ button {
 button:hover {
     background-color: #8a5733;
     transform: scale(1.05);
-}
-
-/* ==========================
-   RODAPÉ
-========================== */
-footer {
-    padding-top: 20px;
-    padding-bottom: 10px;
-    margin-top: 30px;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 2rem;
-}
-
-.footer-col h3,
-.footer-col h4 {
-    color: #4a382c;
-    margin-bottom: 1rem;
-}
-
-.footer-col.about .logo {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.footer-col.about .logo img {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-color: #f0f0f0;
-}
-
-.footer-col.about p {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.social-icons a {
-    margin-right: 10px;
-}
-
-.social-icons img {
-    height: 24px;
-}
-
-.footer-col ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-
-.footer-col ul li {
-    margin-bottom: 0.5rem;
 }
 
 /* ==========================
