@@ -2,15 +2,15 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesse a sua conta - Feira Virtual</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>Login - Feira Virtual</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css"> 
     <link rel="stylesheet" href="../style_global.css">
-    <link rel="stylesheet" href="./style.css">
     <script src="./login.js" defer></script>
 </head>
 
@@ -27,10 +27,10 @@
             </a>
             
             <nav class="icons" aria-label="Navegação de atalhos">
-                <a href="../Acesseasuaconta.html" class="icon-link" title="Acesse sua conta">
+                <a href="#" class="icon-link" title="Acesse sua conta">
                     <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                 </a>
-                
+            
                 <a href="https://maps.google.com" target="_blank" class="icon-link" title="Localização">
                     <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                 </a>
@@ -41,25 +41,26 @@
             </nav>
         </div>
     </header>
-
-    <main class="login-section container">
-        <section class="cadastro card-padrao">
+    
+    <section class="login-section">
+        <div class="container-login">
             <h2>Acesse sua Conta</h2>
-            <p>Do campo à sua mesa. Cadastre-se agora em nossa plataforma.</p>
+            <p>Bem-vindo de volta! Faça login para apoiar os pequenos produtores.</p>
 
-            <form>
-                <input type="text" placeholder="E-mail" required>
-                <input type="password" placeholder="Senha" required>
+            <form id="form-login">
+                <input type="email" id="email-login" placeholder="E-mail" required>
+                <input type="password" id="senha-login" placeholder="Senha" required>
+                
+                <p id="erro-login" style="color: red; display: none; font-size: 14px; margin-top:-10px;"></p>
 
-                <button type="submit" class="btn-primary">Entrar</button>
-
-                <div class="links-cadastro">
-                    <a href="../Cadastro_Vendedor/index.html">Cadastrar (Produtor)</a>
-                    <a href="../TelaCadastro/TelaCadastro.html">Cadastrar (Consumidor Final)</a>
-                </div>
+                <button type="submit">Entrar</button>
             </form>
-        </section>
-    </main>
+
+            <p class="link-cadastro">
+                Ainda não tem uma conta? <a href="../TelaCadastro/cadastro.html">Cadastre-se aqui</a>
+            </p>
+        </div>
+    </section>
 
     <footer>
         <div class="container footer-content">
@@ -86,14 +87,13 @@
                 <h4>Suporte</h4>
                 <nav aria-label="Menu de Suporte e Políticas">
                     <ul>
-                        <li><a href="../assets/PDF/FAQ.pdf">Fale Conosco</a></li>
-                        <li><a href="../assets/PDF/TERMOS.pdf">Termos de Uso</a></li>
-                        <li><a href="../assets/PDF/PRIVACIDADE.pdf">Política de Privacidade</a></li>
+                        <li><a href="../assets/PDF/FAQ.pdf" target="_blank">Fale Conosco</a></li>
+                        <li><a href="../assets/PDF/TERMOS.pdf" target="_blank">Termos de Uso</a></li>
+                        <li><a href="../assets/PDF/PRIVACIDADE.pdf" target="_blank">Política de Privacidade</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </footer>
-
 </body>
 </html>
