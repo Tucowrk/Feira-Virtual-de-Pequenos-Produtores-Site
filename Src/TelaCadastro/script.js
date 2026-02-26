@@ -1,3 +1,4 @@
+console.log("O arquivo JS está conectado!");
 document.addEventListener("DOMContentLoaded", () => {
     const formCadastro = document.getElementById("form-cadastro");
 
