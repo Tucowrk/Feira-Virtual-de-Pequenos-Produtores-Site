@@ -6,7 +6,6 @@ const produtos = [
     // Adicionei apenas 3 para resumir, mas o script funciona com a sua lista completa!
 ];
 
-// Carrega o carrinho do localStorage ou inicia vazio
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
 // === FUNÇÃO APENAS PARA TESTE VISUAL (REMOVER DEPOIS) ===
@@ -17,14 +16,12 @@ if (carrinho.length === 0) {
     ];
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
 }
-// =========================================================
 
 const taxaFrete = 10.00;
 
 document.addEventListener("DOMContentLoaded", () => {
     renderizarCarrinho();
 
-    // Lógica do botão de finalizar compra
     const btnFinalizar = document.getElementById('btn-finalizar');
     const msgLogin = document.getElementById('msg-login');
 
@@ -34,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!usuarioLogado) {
             msgLogin.innerText = "Você precisa fazer login para finalizar a compra!";
             msgLogin.style.display = "block";
-            // Redireciona para o login após 2 segundos
+
             setTimeout(() => {
                 window.location.href = "../Acesse a sua conta/Acesseasuaconta.html";
             }, 2000);
@@ -48,88 +45,103 @@ document.addEventListener("DOMContentLoaded", () => {
 
         alert(`Compra finalizada com sucesso, ${usuarioLogado.nome}! Muito obrigado por apoiar o pequeno produtor.`);
         
-        // Esvazia o carrinho e recarrega a página
         localStorage.removeItem('carrinho');
         window.location.reload();
     });
 });
 
-// Função para formatar moeda
-function formatarMoeda(valor) {
-    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-// Atualiza o visual do carrinho e os cálculos
-function renderizarCarrinho() {
-    const listaHtml = document.getElementById('lista-carrinho');
-    listaHtml.innerHTML = '';
+document.addEventListener("DOMContentLoaded", () => {
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     
-    let subtotal = 0;
+    // Define qual "gaveta" do banco de dados abrir:
+    // Se logado, abre a gaveta do usuário. Se deslogado, abre a do visitante.
+    const chaveCart = usuarioLogado ? `carrinho_${usuarioLogado.email}` : "carrinho_visitante";
+    
+    let carrinho = JSON.parse(localStorage.getItem(chaveCart)) || [];
+    const taxaFrete = 10.00;
 
-    if (carrinho.length === 0) {
-        listaHtml.innerHTML = '<p style="text-align:center; padding: 20px; color:#888;">Seu carrinho está vazio. Vamos às compras?</p>';
-        atualizarTotais(0);
-        return;
-    }
+    renderizarCarrinho();
 
-    carrinho.forEach((item, index) => {
-        subtotal += item.price * item.qtd;
+    const btnFinalizar = document.getElementById('btn-finalizar');
+    const msgLogin = document.getElementById('msg-login');
 
-        listaHtml.innerHTML += `
-            <div class="cart-item">
-                <img src="${item.img}" alt="${item.name}">
-                
-                <div class="item-details">
-                    <h4>${item.name}</h4>
-                    <button class="btn-remover" onclick="removerItem(${index})">Remover</button>
-                </div>
+    btnFinalizar.addEventListener('click', () => {
+        if (!usuarioLogado) {
+            msgLogin.innerText = "Você precisa fazer login para finalizar a compra!";
+            msgLogin.style.display = "block";
+            setTimeout(() => {
+                window.location.href = "../Acesse a sua conta/Acesseasuaconta.html";
+            }, 2000);
+            return;
+        }
 
-                <div class="item-actions">
-                    <div class="qtd-control">
-                        <button onclick="alterarQtd(${index}, -1)">-</button>
-                        <input type="text" value="${item.qtd}" readonly>
-                        <button onclick="alterarQtd(${index}, 1)">+</button>
-                    </div>
-                    <div class="item-price">
-                        ${formatarMoeda(item.price * item.qtd)}
-                    </div>
-                </div>
-            </div>
-        `;
+        if (carrinho.length === 0) {
+            alert("Seu carrinho está vazio!");
+            return;
+        }
+
+        alert(`Compra finalizada com sucesso, ${usuarioLogado.nome}!`);
+        localStorage.removeItem(chaveCart); 
+        window.location.reload();
     });
 
-    atualizarTotais(subtotal);
-}
+    function renderizarCarrinho() {
+        const listaHtml = document.getElementById('lista-carrinho');
+        listaHtml.innerHTML = '';
+        let subtotal = 0;
 
-// Altera a quantidade (+ ou -)
-function alterarQtd(index, variacao) {
-    carrinho[index].qtd += variacao;
+        if (carrinho.length === 0) {
+            listaHtml.innerHTML = '<p style="text-align:center; padding: 20px; color:#888;">Seu carrinho está vazio.</p>';
+            atualizarTotais(0);
+            return;
+        }
 
-    // Se chegar a zero, remove o item
-    if (carrinho[index].qtd <= 0) {
-        removerItem(index);
-        return;
+        carrinho.forEach((item, index) => {
+            subtotal += item.price * item.qtd;
+            listaHtml.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="item-details">
+                        <h4>${item.name}</h4>
+                        <button class="btn-remover" onclick="removerItem(${index})">Remover</button>
+                    </div>
+                    <div class="item-actions">
+                        <div class="qtd-control">
+                            <button onclick="alterarQtd(${index}, -1)">-</button>
+                            <input type="text" value="${item.qtd}" readonly>
+                            <button onclick="alterarQtd(${index}, 1)">+</button>
+                        </div>
+                        <div class="item-price">${formatarMoeda(item.price * item.qtd)}</div>
+                    </div>
+                </div>`;
+        });
+        atualizarTotais(subtotal);
     }
 
-    salvarERenderizar();
-}
+    // Funções globais para manipular o carrinho (necessárias para os botões gerados dinamicamente)
+    window.alterarQtd = (index, variacao) => {
+        carrinho[index].qtd += variacao;
+        if (carrinho[index].qtd <= 0) return removerItem(index);
+        salvarERenderizar();
+    };
 
-// Remove item do array
-function removerItem(index) {
-    carrinho.splice(index, 1);
-    salvarERenderizar();
-}
+    window.removerItem = (index) => {
+        carrinho.splice(index, 1);
+        salvarERenderizar();
+    };
 
-// Atualiza painel direito de Resumo
-function atualizarTotais(subtotal) {
-    document.getElementById('subtotal').innerText = formatarMoeda(subtotal);
-    
-    const total = subtotal > 0 ? subtotal + taxaFrete : 0;
-    document.getElementById('total-pedido').innerText = formatarMoeda(total);
-}
+    function atualizarTotais(subtotal) {
+        document.getElementById('subtotal').innerText = formatarMoeda(subtotal);
+        const total = subtotal > 0 ? subtotal + taxaFrete : 0;
+        document.getElementById('total-pedido').innerText = formatarMoeda(total);
+    }
 
-// Salva no LocalStorage e atualiza a tela
-function salvarERenderizar() {
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    renderizarCarrinho();
-}
+    function salvarERenderizar() {
+        localStorage.setItem(chaveCart, JSON.stringify(carrinho));
+        renderizarCarrinho();
+    }
+
+    function formatarMoeda(valor) {
+        return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+});
