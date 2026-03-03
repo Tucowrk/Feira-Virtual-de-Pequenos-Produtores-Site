@@ -1,148 +1,109 @@
+// O array 'produtos' já está carregado na memória pelo global-Produtos.js!
 
-function listProducts(list) {
-    const listProducts = document.querySelector('.cards-produtos');
-    listProducts.innerHTML = ''
-    if(list.length == 0) {
-        listProducts.innerHTML = `<p>Sem produtos nesta categoria</p>`
+// 1. Lógica de perfil/usuário
+let usuarioLogado = null;
+try {
+    usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+} catch (e) {
+    console.error("Erro ao ler dados do usuário no localStorage", e);
+}
+
+// Define de quem é o carrinho (Arthur, outro usuário ou visitante)
+const chaveCart = usuarioLogado ? `carrinho_${usuarioLogado.email}` : "carrinho_visitante";
+
+// 2. Função principal de inicialização da página
+function iniciarPagina() {
+    console.log("Iniciando montagem da vitrine de Artesanato...");
+    
+    const vitrine = document.getElementById("vitrine-produtos");
+    const campoBusca = document.getElementById("campo-busca");
+    const filtroCategoria = document.getElementById("filtroCategoria");
+    const ordenarPreco = document.getElementById("ordenarPreco");
+
+    if (!vitrine) {
+        console.error("ERRO: Div 'vitrine-produtos' não encontrada no HTML!");
         return;
     }
-    
-    list.forEach((item) => {
-        const card = document.createElement('div');
-        card.classList.add('card');
 
-        card.innerHTML =
-            `
-                <img src="${item.img}" alt="cesta-de-palha">
-                <p>${item.name}</p>
-                <p>${real.format(item.price)}</P>
-                <button>Adicionar ao carrinho</button>
-            `
-
-        card.querySelector('button').addEventListener('click', () => adicionarCarrinho(item));
-        listProducts.appendChild(card);
-
-    });
-
-}
-
-
-// Filtrar por categoria
-const filtroCategoria = document.getElementById("filtroCategoria");
-const cardsProdutos = document.querySelectorAll(".card");
-
-
-
-filtroCategoria.addEventListener("change", () => {
-    const categoriaSelecionada = filtroCategoria.value;
-
-    if(categoriaSelecionada == ''){
-        listProducts(produtos)
-        return;
-    }
-    
-    let filterItens = produtos.filter(prod => prod.category == categoriaSelecionada.toLowerCase())
-    console.log(filterItens)
-    listProducts(filterItens)
-
-    
-});
-
-
-
-function setValue(value) {
-    let filterItens = produtos.filter(prod => prod.category == value.toLowerCase())
-    console.log('ss',filterItens)
-    listProducts(filterItens)
-}
-
-
-
-
- 
-// Ordenar por preço
-const ordenarPreco = document.getElementById("ordenarPreco");
-const containerCards = document.querySelector(".cards-produtos");
- 
-ordenarPreco.addEventListener("change", () => {
-    let cardsArray = Array.from(cardsProdutos);
-    
- 
-    if (ordenarPreco.value === "Menor preço") {
-        cardsArray.sort((a, b) => extrairPreco(a) - extrairPreco(b));
-    }
-    if (ordenarPreco.value === "Maior preço") {
-        cardsArray.sort((a, b) => extrairPreco(b) - extrairPreco(a));
-    }
-    if (ordenarPreco.value === "Mais recentes") {
-        cardsArray.reverse();
-    }
- 
-    containerCards.innerHTML = "";
-    cardsArray.forEach(c => containerCards.appendChild(c));
-});
- 
-function extrairPreco(card) {
-    let precoTexto = card.querySelector(".preco").innerText;
-    return parseFloat(precoTexto.replace("R$", "").replace(",", "."));
-}
- 
-// Adicionar ao Carrinho
-const botoesCarrinho = document.querySelectorAll(".btn-carrinho");
- 
-botoesCarrinho.forEach(btn => {
-    btn.addEventListener("click", () => {
-        const produto = btn.parentElement.querySelector("p").innerText;
-        const preco = btn.parentElement.querySelector(".preco").innerText;
- 
-        let quantidade = prompt(`Quantas unidades de "${produto}" deseja adicionar?`);
- 
-        if (quantidade === null || quantidade === "" || quantidade <= 0) {
-            alert("Quantidade inválida");
+    // Função que desenha os cards
+    function renderizar(lista) {
+        if (lista.length === 0) {
+            vitrine.innerHTML = "<p style='text-align:center; padding: 20px; width: 100%;'>Nenhum produto encontrado nesta categoria.</p>";
             return;
         }
- 
-       
-        let itemCarrinho = {
-            produto: produto,
-            preco: preco,
-            quantidade: quantidade
-        };
- 
-        localStorage.setItem("itemCarrinho", JSON.stringify(itemCarrinho));
- 
-        // Redirecionar para carrinho
-        window.location.href = "../carrinho/carrinho.html";
-    });
-});
- 
-// Busca por nome, categoria
-const campoBusca = document.querySelector(".campo-busca");
- 
-campoBusca.addEventListener("input", () => {
-    const query = campoBusca.value.toLowerCase().trim();
- 
-    cardsProdutos.forEach(card => {
-        const nomeProduto = card.querySelector("p").innerText.toLowerCase();
-        const categoriaCard = "artesanato";
- 
-        if (nomeProduto.includes(query) || categoriaCard.includes(query)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
-});
 
-function getFilterParams() {
-    const currentUrl = window.location.href;
-    const params = new URL(currentUrl).searchParams;
-    const category = params.get("categoria")
-    console.log(category.toString())
-    setValue(category)
+        vitrine.innerHTML = lista.map(p => `
+            <div class="card">
+                <img src="${p.img}" alt="${p.name}">
+                <p>${p.name}</p>
+                <p class="preco">R$ ${p.price.toFixed(2).replace('.',',')}</p>
+                <button class="btn-carrinho" onclick="adicionarAoCart('${p.id}')">Adicionar</button>
+            </div>
+        `).join('');
+    }
+
+    // Função que filtra e ordena os dados globais
+    function filtrar() {
+        const termo = campoBusca.value.toLowerCase();
+        const cat = filtroCategoria.value;
+        const ordem = ordenarPreco.value;
+
+        // Filtra o array 'produtos' (que vem do global-Produtos.js)
+        let resultado = produtos.filter(p => 
+            (cat === "Todos" || p.category.toLowerCase() === cat.toLowerCase()) &&
+            p.name.toLowerCase().includes(termo)
+        );
+
+        if (ordem === "menor") resultado.sort((a,b) => a.price - b.price);
+        if (ordem === "maior") resultado.sort((a,b) => b.price - a.price);
+
+        renderizar(resultado);
+    }
+
+    // Adiciona os "escutadores" de eventos nos filtros
+    campoBusca.addEventListener("input", filtrar);
+    filtroCategoria.addEventListener("change", filtrar);
+    ordenarPreco.addEventListener("change", filtrar);
+
+    // INICIA EXIBINDO APENAS ARTESANATO
+    // O seu HTML do artesanato precisa ter a <option value="artesanato" selected> 
+    filtrar(); 
+    atualizarMiniCart();
 }
 
+// Garante que o código só rode após o HTML estar carregado
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", iniciarPagina);
+} else {
+    iniciarPagina();
+}
 
+// 3. Funções do Mini-Carrinho Lateral
+window.adicionarAoCart = (id) => {
+    // Puxa do banco de dados global
+    const prod = produtos.find(p => p.id === id);
+    let cart = JSON.parse(localStorage.getItem(chaveCart)) || [];
+    const index = cart.findIndex(i => i.id === id);
+    
+    if(index > -1) cart[index].qtd += 1;
+    else cart.push({...prod, qtd: 1});
+    
+    localStorage.setItem(chaveCart, JSON.stringify(cart));
+    atualizarMiniCart();
+};
 
-listProducts(produtos);
-getFilterParams();
+window.atualizarMiniCart = () => {
+    const lista = document.getElementById("mini-lista-carrinho");
+    const totalMsg = document.getElementById("total-mini");
+    if(!lista || !totalMsg) return;
+
+    const cart = JSON.parse(localStorage.getItem(chaveCart)) || [];
+    let total = 0;
+    
+    lista.innerHTML = cart.map(i => {
+        total += i.price * i.qtd;
+        return `<div class="mini-item"><span>${i.qtd}x ${i.name}</span><span>R$ ${(i.price * i.qtd).toFixed(2)}</span></div>`;
+    }).join('');
+    
+    totalMsg.innerText = `R$ ${total.toFixed(2).replace('.',',')}`;
+};
