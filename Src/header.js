@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     } else {
-        // Se NÃO estiver logado, garante que o ícone aponta para o Login
-        linkConta.href = "../Acesse a sua conta/Acesseasuaconta.html";
-        linkConta.title = "Acesse sua conta";
+        // Se NÃO estiver logado, aponta para a tela de Escolha de Perfil
+        linkConta.href = "../selecao-perfil/selecao-perfil.html";
+        linkConta.title = "Acessar a Plataforma";
     }
 });
