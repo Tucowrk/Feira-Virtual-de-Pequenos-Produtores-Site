@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Cadastrar Produto - Feira Virtual</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../style_global.css">
+    <link rel="stylesheet" href="./style-dashboard.css">
+    <script src="./cadastro-produtos.js" defer></script>
+</head>
+<body class="dashboard-body">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Feira Virtual</h2>
+            <p>Painel do Produtor</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="./Configuracoes_Produtor.html">Visão Geral</a>
+            <a href="#" class="active">Cadastrar Produto</a>
+            <a href="#">Pedidos Recebidos</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="./Configuracoes_Produtor.html" style="color: #fff; text-decoration: none; font-size: 0.9rem;">← Voltar ao Painel</a>
+        </div>
+    </aside>
+
+    <main class="dashboard-content">
+        <div class="dashboard-topbar">
+            <div>
+                <h1>Novo Produto</h1>
+                <p>Preencha os detalhes para colocar seu item na vitrine.</p>
+            </div>
+        </div>
+
+        <section class="action-area">
+            <form id="form-cadastro-produto" class="produto-form">
+                <div class="form-grid-personal">
+                    <div class="form-group">
+                        <label>Nome do Produto</label>
+                        <input type="text" id="prod-nome" class="campo-formulario" placeholder="Ex: Morango Orgânico" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoria</label>
+                        <select id="prod-categoria" class="campo-formulario" required>
+                            <option value="">Selecione...</option>
+                            <option value="hortifruti">Hortifruti</option>
+                            <option value="mercearia">Mercearia</option>
+                            <option value="laticinios">Laticínios</option>
+                            <option value="artesanato">Artesanato</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preço (R$)</label>
+                        <input type="number" step="0.01" id="prod-preco" class="campo-formulario" placeholder="0,00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Unidade de Medida</label>
+                        <select id="prod-unidade" class="campo-formulario" required>
+                            <option value="kg">Quilo (kg)</option>
+                            <option value="unid">Unidade (unid)</option>
+                            <option value="bandeja">Bandeja</option>
+                            <option value="litro">Litro (L)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label>Descrição do Produto</label>
+                    <textarea id="prod-desc" rows="4" class="campo-formulario" placeholder="Descreva o frescor e a origem do seu produto..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Link da Imagem (URL)</label>
+                    <input type="text" id="prod-img" class="campo-formulario" placeholder="https://exemplo.com/imagem.jpg">
+                    <small style="color: #7f8c8d;">Dica: Por enquanto, use links de imagens da internet ou da sua pasta assets.</small>
+                </div>
+
+                <div class="form-actions" style="margin-top: 30px; display: flex; gap: 15px;">
+                    <button type="submit" class="btn-primary">Publicar Produto</button>
+                    <button type="button" onclick="window.location.href='./Configuracoes_Produtor.html'" class="btn-visitar-loja">Cancelar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>
