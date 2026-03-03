@@ -44,6 +44,34 @@ a:hover { text-decoration: underline; }
     opacity: 0.9;
 }
 
+header .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 15px; /* Espaço entre a imagem e o texto */
+}
+
+header .logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+header .logo-text h1 {
+    font-family: 'Gilda Display', serif;
+    font-size: 32px; /* Tamanho seguro para não quebrar o header */
+    color: #ffffff !important; /* Força a cor branca */
+    margin: 0;
+    line-height: 1;
+}
+
+header .logo-text p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #ffffff !important;
+    margin: 5px 0 0 0;
+    opacity: 0.9;
+}
+
 /* Formulário Principal */
 #cadastro-form {
     margin: 0 auto 60px;
