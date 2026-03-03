@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } else {
         // Se NÃO estiver logado, aponta para a tela de Escolha de Perfil
-        linkConta.href = "../selecao-perfil/selecao-perfil.html";
+        linkConta.href = "./selecao-perfil/selecao-perfil.html";
         linkConta.title = "Acessar a Plataforma";
     }
 });
