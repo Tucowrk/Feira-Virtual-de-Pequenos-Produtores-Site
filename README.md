@@ -2,8 +2,6 @@
 
 ![Status do Projeto](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow) ![Tech](https://img.shields.io/badge/Tech-React%20%7C%20JS%20%7C%20Python%20%7C%20Node.js-blue)
 
-> Acesse o projeto online: [Link para o deploy aqui]
-
 ## 📖 Sobre o Projeto
 
 A agricultura familiar gera a maioria dos empregos no campo no Brasil, mas enfrenta barreiras tecnológicas e de acesso ao mercado. A **Feira Virtual** é uma plataforma Full-Stack projetada para eliminar intermediários na cadeia de alimentos, conectar consumidores a alimentos frescos e locais, e oferecer gestão profissional para pequenos produtores (como aviso de colheita e gestão de estoque).
