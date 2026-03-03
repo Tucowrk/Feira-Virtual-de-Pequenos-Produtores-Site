@@ -1,90 +1,43 @@
-// Trazendo o seu banco de dados de produtos para uso (pode ficar aqui por enquanto)
-const produtos = [
-    { id: '1', name: 'Pêssego', category: 'hortifruti', price: 4.00, img: '../assets/Pessego.jpg', desc: 'Pêssego.' },
-    { id: '12', name: 'Mamão', category: 'hortifruti', price: 6.00, img: '../assets/mamao.jpg', desc: 'Mamão.' },
-    { id: '13', name: 'Doce de Leite Caseiro', category: 'mercearia', price: 15.00, img: '../assets/pagina-padrao/Pagina-Mercearia/doce-de-leite1.jpg', desc: '.' },
-    // Adicionei apenas 3 para resumir, mas o script funciona com a sua lista completa!
-];
-
-let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-// === FUNÇÃO APENAS PARA TESTE VISUAL (REMOVER DEPOIS) ===
-if (carrinho.length === 0) {
-    carrinho = [
-        { id: '1', name: 'Pêssego', price: 4.00, img: '../assets/Pessego.jpg', qtd: 2 },
-        { id: '13', name: 'Doce de Leite Caseiro', price: 15.00, img: '../assets/pagina-padrao/Pagina-Mercearia/doce-de-leite1.jpg', qtd: 1 }
-    ];
-    localStorage.setItem('carrinho', JSON.stringify(carrinho));
-}
-
-const taxaFrete = 10.00;
-
 document.addEventListener("DOMContentLoaded", () => {
-    renderizarCarrinho();
-
-    const btnFinalizar = document.getElementById('btn-finalizar');
-    const msgLogin = document.getElementById('msg-login');
-
-    btnFinalizar.addEventListener('click', () => {
-        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-
-        if (!usuarioLogado) {
-            msgLogin.innerText = "Você precisa fazer login para finalizar a compra!";
-            msgLogin.style.display = "block";
-
-            setTimeout(() => {
-                window.location.href = "../Acesse a sua conta/Acesseasuaconta.html";
-            }, 2000);
-            return;
-        }
-
-        if (carrinho.length === 0) {
-            alert("Seu carrinho está vazio!");
-            return;
-        }
-
-        alert(`Compra finalizada com sucesso, ${usuarioLogado.nome}! Muito obrigado por apoiar o pequeno produtor.`);
-        
-        localStorage.removeItem('carrinho');
-        window.location.reload();
-    });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
+    // 1. Identifica o usuário e define qual "gaveta" (chave) do banco de dados abrir
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    
-    // Define qual "gaveta" do banco de dados abrir:
-    // Se logado, abre a gaveta do usuário. Se deslogado, abre a do visitante.
     const chaveCart = usuarioLogado ? `carrinho_${usuarioLogado.email}` : "carrinho_visitante";
     
     let carrinho = JSON.parse(localStorage.getItem(chaveCart)) || [];
     const taxaFrete = 10.00;
 
+    // Renderiza o carrinho na tela assim que carregar
     renderizarCarrinho();
 
     const btnFinalizar = document.getElementById('btn-finalizar');
     const msgLogin = document.getElementById('msg-login');
 
-    btnFinalizar.addEventListener('click', () => {
-        if (!usuarioLogado) {
-            msgLogin.innerText = "Você precisa fazer login para finalizar a compra!";
-            msgLogin.style.display = "block";
-            setTimeout(() => {
-                window.location.href = "../Acesse a sua conta/Acesseasuaconta.html";
-            }, 2000);
-            return;
-        }
+    // === LÓGICA DO BOTÃO FINALIZAR PEDIDO ===
+    if (btnFinalizar) {
+        btnFinalizar.addEventListener('click', () => {
+            // Regra 1: Precisa estar logado
+            if (!usuarioLogado) {
+                msgLogin.innerText = "Você precisa fazer login para finalizar a compra!";
+                msgLogin.style.display = "block";
+                setTimeout(() => {
+                    window.location.href = "../Acesse a sua conta/Acesseasuaconta.html";
+                }, 2000);
+                return;
+            }
 
-        if (carrinho.length === 0) {
-            alert("Seu carrinho está vazio!");
-            return;
-        }
+            // Regra 2: Carrinho não pode estar vazio
+            if (carrinho.length === 0) {
+                alert("Seu carrinho está vazio! Adicione produtos antes de continuar.");
+                return;
+            }
 
-        alert(`Compra finalizada com sucesso, ${usuarioLogado.nome}!`);
-        localStorage.removeItem(chaveCart); 
-        window.location.reload();
-    });
+            // Regra 3: Redireciona para a página de Checkout que criamos!
+            // ATENÇÃO: Verifique se o nome da pasta e do arquivo batem com a sua estrutura.
+            window.location.href = "../finalizar_pedido/finalizar.html"; 
+        });
+    }
 
+    // === FUNÇÕES DE RENDERIZAÇÃO E CÁLCULO ===
     function renderizarCarrinho() {
         const listaHtml = document.getElementById('lista-carrinho');
         listaHtml.innerHTML = '';
@@ -97,7 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         carrinho.forEach((item, index) => {
-            subtotal += item.price * item.qtd;
+            let qtd = item.qtd ? Number(item.qtd) : 1; // Garante que a qtd é um número
+            subtotal += item.price * qtd;
+            
             listaHtml.innerHTML += `
                 <div class="cart-item">
                     <img src="${item.img}" alt="${item.name}">
@@ -108,20 +63,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="item-actions">
                         <div class="qtd-control">
                             <button onclick="alterarQtd(${index}, -1)">-</button>
-                            <input type="text" value="${item.qtd}" readonly>
+                            <input type="text" value="${qtd}" readonly>
                             <button onclick="alterarQtd(${index}, 1)">+</button>
                         </div>
-                        <div class="item-price">${formatarMoeda(item.price * item.qtd)}</div>
+                        <div class="item-price">${formatarMoeda(item.price * qtd)}</div>
                     </div>
                 </div>`;
         });
+        
         atualizarTotais(subtotal);
     }
 
-    // Funções globais para manipular o carrinho (necessárias para os botões gerados dinamicamente)
+    // Funções globais para manipular o carrinho (necessárias para os botões do HTML)
     window.alterarQtd = (index, variacao) => {
         carrinho[index].qtd += variacao;
-        if (carrinho[index].qtd <= 0) return removerItem(index);
+        if (carrinho[index].qtd <= 0) {
+            return removerItem(index);
+        }
         salvarERenderizar();
     };
 
