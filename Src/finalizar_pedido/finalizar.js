@@ -23,7 +23,7 @@ const formatarMoeda = (valor) => {
     return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 };
 
-// 1. Carrega os dados do Carrinho
+// Carrega os dados do Carrinho
 function carregarCarrinho() {
     // Busca a chave correta baseada no login
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -47,7 +47,7 @@ function carregarCarrinho() {
     atualizarResumo();
 }
 
-// 2. Atualiza os valores na tela
+// Atualiza os valores na tela
 function atualizarResumo() {
     // Regra do Frete (R$ 10 para entrega, R$ 0 para retirada)
     const tipoEnvio = document.querySelector('input[name="tipo"]:checked').value;
@@ -66,7 +66,7 @@ function atualizarResumo() {
     spanTotal.innerText = formatarMoeda(totalGeral);
 }
 
-// 3. Listeners para Tipo de Envio (Entrega/Retirada)
+// Listeners para Tipo de Envio (Entrega/Retirada)
 radiosTipoEnvio.forEach(radio => {
     radio.addEventListener("change", (e) => {
         if (e.target.value === 'entrega') {
@@ -80,7 +80,7 @@ radiosTipoEnvio.forEach(radio => {
     });
 });
 
-// 4. Listeners para Tipo de Pagamento
+// Listeners para Tipo de Pagamento
 radiosPagamento.forEach(radio => {
     radio.addEventListener("change", (e) => {
         tipoPagamento = e.target.value;
@@ -89,7 +89,7 @@ radiosPagamento.forEach(radio => {
     });
 });
 
-// 5. Função de Finalizar a Compra
+// Função de Finalizar a Compra
 function finalizar() {
     const tipoEnvio = document.querySelector('input[name="tipo"]:checked').value;
     
