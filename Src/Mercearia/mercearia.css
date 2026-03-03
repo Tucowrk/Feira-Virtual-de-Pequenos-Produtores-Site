@@ -1,0 +1,146 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    background-color: #f6f6f0;
+}
+
+/* === VITRINE E FILTROS === */
+.vitrine-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.barra-filtros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.campo-busca {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.select-categoria, .select-ordenar {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.cards-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.card:hover { transform: translateY(-5px); }
+
+.card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card p { margin-top: 10px; color: #333; }
+
+.card .preco {
+    color: #a36b3e;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn-carrinho {
+    background-color: #a36b3e;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* === SIDEBAR DO CARRINHO === */
+.sidebar-carrinho {
+    position: relative;
+}
+
+.carrinho-fixed {
+    position: sticky;
+    top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.carrinho-fixed h3 { color: #4a382c; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px;}
+
+.mini-lista {
+    flex: 1;
+    overflow-y: auto;
+    margin: 15px 0;
+}
+
+.mini-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    padding-top: 10px;
+    border-top: 2px solid #a36b3e;
+    color: #333;
+}
+
+.btn-checkout {
+    display: block;
+    background: #4a382c;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+@media (max-width: 992px) {
+    .main-layout { grid-template-columns: 1fr; }
+    .sidebar-carrinho { display: none; }
+}
