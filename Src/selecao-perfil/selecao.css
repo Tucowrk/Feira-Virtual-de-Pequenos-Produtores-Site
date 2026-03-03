@@ -1,0 +1,112 @@
+body {
+    background-color: #f7f5ef;
+}
+
+.decision-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.decision-header h2 {
+    font-family: 'Gilda Display', serif;
+    font-size: 2.8rem;
+    color: #4a382c;
+    margin-bottom: 10px;
+}
+
+.decision-header p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+.cards-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.decision-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 380px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid transparent;
+}
+
+.decision-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(163, 107, 62, 0.15);
+}
+
+.cliente-card:hover { border-color: #27ae60; }
+.produtor-card:hover { border-color: #a36b3e; }
+
+.icon-circle {
+    font-size: 3rem;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f5ef;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.decision-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.decision-card p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.btn-outline {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.cliente-card .btn-outline {
+    color: #27ae60;
+    border: 2px solid #27ae60;
+}
+.cliente-card:hover .btn-outline {
+    background-color: #27ae60;
+    color: white;
+}
+
+.produtor-card .btn-outline {
+    color: #a36b3e;
+    border: 2px solid #a36b3e;
+}
+.produtor-card:hover .btn-outline {
+    background-color: #a36b3e;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .cards-wrapper { flex-direction: column; align-items: center; }
+}
