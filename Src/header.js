@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (usuarioLogado) {
         // 1. MANTÉM O ÍCONE, mas muda o destino para a página de Perfil
-        // Ajuste o caminho "../Perfil/perfil.html" de acordo com o nome da sua pasta
-        linkConta.href = "../Perfil/perfil.html"; 
+        linkConta.href = "../Perfil_Usuario/Perfil_Usuario.html"; 
         linkConta.title = "Meu Perfil";
 
         // 2. Pega apenas o primeiro nome para a saudação
